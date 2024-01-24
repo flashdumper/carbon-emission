@@ -1,0 +1,7 @@
+# This file is used by pip to install required python packages
+# Usage: pip3 install -r requirements.txt
+
+urllib3
+requests
+Flask
+flask-bootstrap
