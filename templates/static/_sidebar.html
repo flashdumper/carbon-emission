@@ -1,0 +1,149 @@
+
+    <div class="sidebar" data-color='green' data-image="{{url_for('static',filename='light-pro/img/sidebar-5.jpg')}}">
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="/" class="simple-text logo-mini">
+                    <img src="{{url_for('static',filename='img/att_globe3.png')}}" width="30" height="28" style="margin-left:-5px;padding:0;border:0;">
+                </a>
+                <a href="/" class="simple-text logo-normal">
+                    Test Automation
+                </a>
+            </div>
+            <div class="user">
+                <div class="photo">
+                    <img src="{{url_for('static',filename='img/default-avatar.png')}}"/>
+                </div>
+                <div class="info ">
+                    <a data-toggle="collapse" href="#collapseExample" class="collapsed">
+                            <span>{{session['cn']}}
+                                <b class="caret"></b>
+                            </span>
+                    </a>
+                    <div class="collapse" id="collapseExample">
+                        <ul class="nav">
+                            <li>
+                                <a class="profile-dropdown" href="#pablo">
+                                    <span class="sidebar-mini">MP</span>
+                                    <span class="sidebar-normal">My Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="profile-dropdown" href="#pablo">
+                                    <span class="sidebar-mini">EP</span>
+                                    <span class="sidebar-normal">Edit Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="profile-dropdown" href="#pablo">
+                                    <span class="sidebar-mini">S</span>
+                                    <span class="sidebar-normal">Settings</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <ul class="nav">
+                <li class="nav-item ">
+                    <a class="nav-link" href="/home">
+                        <i class="nc-icon nc-bank"></i>
+                        <p>Home</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#RUN">
+                        <i class="nc-icon nc-button-play"></i>
+                        <p>
+                            Run
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse " id="RUN">
+                        <ul class="nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="/run_junos_tests">
+                                    <span class="sidebar-mini">JUN</span>
+                                    <span class="sidebar-normal">Tests</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#ADD">
+                        <i class="nc-icon nc-atom"></i>
+                        <p>
+                            ADD
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse " id="ADD">
+                        <ul class="nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="/add_new_sw">
+                                    <span class="sidebar-mini">SW</span>
+                                    <span class="sidebar-normal">Software</span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="/get_test_cases">
+                                    <span class="sidebar-mini">TST</span>
+                                    <span class="sidebar-normal">Tests</span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="/get_devices">
+                                    <span class="sidebar-mini">DEV</span>
+                                    <span class="sidebar-normal">Devices</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#GET">
+                        <i class="nc-icon nc-vector"></i>
+                        <p>
+                            Get
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse " id="GET">
+                        <ul class="nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="/get_test_results">
+                                    <span class="sidebar-mini">JUN</span>
+                                    <span class="sidebar-normal">Test Results</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#tablesExamples">
+                        <i class="nc-icon nc-paper-2"></i>
+                        <p>
+                            Learn
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse " id="tablesExamples">
+                        <ul class="nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="/overview">
+                                    <span class="sidebar-mini">DO</span>
+                                    <span class="sidebar-normal">Documentation</span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="/overview">
+                                    <span class="sidebar-mini">PO</span>
+                                    <span class="sidebar-normal">Platform Overview</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>

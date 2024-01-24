@@ -1,0 +1,9 @@
+<div class="form-group col-6">
+    <h4>Choose Topology</h4>
+    <select class="selectpicker" name="topology">
+        {%for topology in topologies%}
+        <option value="{{topology['topology']}}">{{topology['short_description']}} - {{topology['long_description']}}</option>
+        {%endfor%}
+    </select>
+</div>
+

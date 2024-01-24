@@ -1,0 +1,55 @@
+<div class="container-fluid">
+    <form method="POST" enctype="multipart/form-data">
+        <h3 class="text-center">Add a device </h3>
+        <div class="form-group row">
+            <label  class="col-lg-2 text-center">Device Name</label>
+            <div class="col-lg-10">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="device_name" placeholder="ptrXXX-vsrx" required>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label  class="col-lg-2 text-center">IP/FQDN</label>
+            <div class="col-lg-10">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="ip_fqdn" placeholder="Specify ip or FQDN" required>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label  class="col-lg-2 text-center">Topology</label>
+            <div class="col-lg-10">
+                <select  class='selectpicker' name="topology" required>
+                    {%for topology in topologies%}
+                    <option value="{{topology['topology']}}">{{topology['short_description']}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label  class="col-lg-2 text-center">OS Type</label>
+            <div class="col-lg-10">
+                <select  class='selectpicker' name="os_type" required>
+                        <option value="junos">junos</option>
+                        <option value="vyos">vyos</option>
+                        <option value="linux">linux</option>
+                    </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-lg-2 text-center ">Username</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" name="username" placeholder="device default username" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-lg-2 text-center ">Password</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" name="password" placeholder="device default password" required>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary col-2 container-fluid" name="ACTION" value="INSERT">Add Device</button>
+</form>
+    <hr>
+</div>

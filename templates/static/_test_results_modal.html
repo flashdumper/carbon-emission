@@ -1,0 +1,108 @@
+<!--Button for Modal-->
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#{{test['test_name']}}{{test['time']|replace('.','')}}" data-whatever="@getbootstrap" style="margin:0">{{test['test_name']}}</button>
+<!--Modal for every rest  -->
+<div class="modal fade bd-example-modal-lg" id="{{test['test_name']}}{{test['time']|replace('.','')}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header justify-content-center">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                </button>
+                <h4 class="title title-up">Tests Details</h4>
+            </div>
+            <div class="modal-body">
+                <div class="collapse" id="base{{test['time']|replace('.','')}}">
+                    <div class="card card-body">
+                        <div class="step-output"></div>
+                        <object data="{{url_for('static',filename='base_config.txt')}}" type="text/plain"
+                                width="100%" style="height: 500px">
+                        </object>
+                    </div>
+                </div>
+                <div class="collapse" id="full{{test['time']|replace('.','')}}">
+                    <div class="card card-body">
+                        <div class="step-output"></div>
+                        <object data="{{url_for('static',filename='full_config.txt')}}" type="text/plain"
+                                width="100%" style="height: 500px">
+                        </object>
+                    </div>
+                </div>
+
+                <div>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse1{{test['time']|replace('.','')}}" aria-expanded="false" aria-controls="collapseExample">
+                        Test Diagram
+                    </button>
+                    <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapse2{{test['time']|replace('.','')}}" aria-expanded="false" aria-controls="collapseExample">
+                        Test Description
+                    </button>
+                    <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#base{{test['time']|replace('.','')}}" aria-expanded="false" aria-controls="collapseExample">
+                        Base Configs
+                    </button>
+                    <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#full{{test['time']|replace('.','')}}" aria-expanded="false" aria-controls="collapseExample">
+                        Full Configs
+                    </button>
+                    <button class="btn btn-success" type="button" style="float: right;">
+                        Rerun This Test
+                    </button>
+                </div>
+                <div class="collapse" id="collapse1{{test['time']|replace('.','')}}">
+                    <div class="card card-body">
+                        <img src="{{url_for('static',filename='assets/img/lab.png')}}">
+                    </div>
+                </div>
+                <div class="collapse" id="collapse2{{test['time']|replace('.','')}}">
+                    <div class="card card-body">
+                        {{test['test_description']}}
+                    </div>
+                </div>
+                <table class="table table-striped ">
+                    <thead>
+                    <tr>
+                        <th class="text-center" style="width: 10%">Device</th>
+                        <th class="text-center" style="width: 55%">Command</th>
+                        <th class="text-center" style="width: 5%">Details</th>
+                        <th class="text-center" style="width: 5%">Stage</th>
+                        <th class="text-center" style="width: 5%">Result</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for step in steps %}
+                    {% if (test['time'] == step['time']) and (test['test_name'] == step['test_name']) %}
+                    {%if step['result'] == 'PASS'%}
+                    {% set status = 'success' %}
+                    {%else%}
+                    {% set status = 'danger' %}
+                    {%endif%}
+                    <tr>
+                        <td class="text-center">{{step['result']}}</td>
+                        <td >{{step['command']}}</td>
+                        <td class="text-center">
+                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse3{{test['time']|replace('.','')}}" aria-expanded="false" aria-controls="collapseExample">
+                                Details
+                            </button>
+                        </td>
+                        <td class="text-center">{{step['stage_name']}}</td>
+                        <td class="alert alert-{{status}} text-center align-middle">{{step['result']}}</td>
+                    </tr>
+
+                    {%endif%}
+                    {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="collapse" id="collapse3{{test['time']|replace('.','')}}">
+                <div class="card card-body">
+                    <div class="step-output"></div>
+                    <object data="{{url_for('static',filename='step_output.txt')}}" type="text/plain"
+                            width="100%" style="height: 500px">
+                    </object>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+

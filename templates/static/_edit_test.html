@@ -1,0 +1,137 @@
+{%if test[0]['test_status'] == 'DONE'%}
+{% set status = 'success' %}
+{% set disabled = 'hidden' %}
+{%elif test[0]['test_status'] == 'APPROVED'%}
+{% set disabled = 'hidden' %}
+{% set status = 'success' %}
+{%elif test[0]['test_status'] == 'IN PROGRESS'%}
+{% set status = 'primary' %}
+{% set disabled = '' %}
+{%elif test[0]['test_status'] == 'NEW'%}
+{% set status = 'info' %}
+{% set disabled = '' %}
+{%endif%}
+
+<style>
+    .hoverimg {
+        cursor: zoom-in;
+        transition: all 0.4s;
+
+    }
+
+    .hoverimg:hover {
+        transform: scale(3.5);
+        box-shadow: 0 1.5rem 4rem rgba(0,0,0, 0.7);
+        z-index:100;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+</style>
+
+<div class="container-fluid">
+    <form method="POST" enctype="multipart/form-data">
+        <h3 class="text-center">Edit a test case </h3>
+        <div class="form-group row">
+            <label  class="col-lg-2 text-center">Test Status</label>
+            <div class="col-lg-10">
+                <select  class='selectpicker' name="test_status" required>
+                    <option value="{{test[0]['test_status']}}">{{test[0]['test_status']}}</option>
+                    <option value="NEW">NEW</option>
+                    <option value="IN PROGRESS">IN PROGRESS</option>
+                    <option value="APPROVED">APPROVED</option>
+                    <option value="APPROVED">UPDATED</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label  class="col-lg-2 text-center">Test Category</label>
+            <div class="col-lg-10">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" list="categories" name="group_name" value="{{test[0]['group_name']}}">
+                </div>
+                <datalist  class='selectpicker' id="categories" name="group_name" required>
+                    {%for group in groups%}
+                    <option value="{{group}}">{{group}}</option>
+                    {%endfor%}
+                </datalist>
+                </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-lg-2 text-center ">Test Name</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="id" name="id" value="{{test[0]['id']}}" hidden>
+                <input type="text" class="form-control" id="test_name" name="test_name" value="{{test[0]['test_name']}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label  class="col-lg-2 text-center">Assign to</label>
+            <div class="col-lg-10">
+                <select  class='selectpicker' name="assignedto">
+                    <option value="{{test[0]['assignedto']}}">{{test[0]['assignedto']}}</option>
+                    <option value="Petr Amirdzhanov">Petr Amirdzhanov</option>
+                    <option value="Donald Trump">Donald Trump</option>
+                    <option value="Vladimir Putin">Vladimir Putin</option>
+                    <option value="Hassan Rauf">Hassan Rauf</option>
+                    <option value="Denis Zuev">Denis Zuev</option>
+                    <option value="Salvatore Mastropolo">Salvatore Mastropolo</option>
+                    <option value="NONE"> NONE </option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2 text-center">
+                <label class="">Test Short Description</label>
+            </div>
+            <div class="col-10">
+                <div class="form-check">
+                    <div class="form-group">
+                        <textarea class="form-control" name="test_description" style="height:75px">{{test[0]['test_description']}}</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2 text-center">
+                <label class="">Test Diagram</label>
+            </div>
+            <div class="col-3">
+                <div class="form-check">
+                    <div class="form-group">
+                        <input type="file" name="file">
+                    </div>
+                </div>
+            </div>
+            {%if test[0]['file']%}
+            <div class="col-2 hoverimg">
+                <div class="form-check" style="padding:0; margin: 0;">
+                    <div class="form-group" style="padding:0; margin: 0;">
+                        <img style="width:100%; height:100%;" src="{{url_for('static',filename='test_diagrams/'+test[0]['file'])}}">
+                    </div>
+                </div>
+            </div>
+            {%endif%}
+        </div>
+        <div class="form-group row">
+            <div class="col-2 text-center">
+                <label class="">Test Full Description</label>
+                <hr>
+                <a class="btn btn-secondary col-10 container-fluid" href="/get_test_cases">Back</a>
+                <hr>
+                <button type="submit" class="btn btn-success col-10 container-fluid" name="ACTION" value="UPDATE">Submit Changes</button>
+                <hr>
+                <button type="submit" class="btn btn-danger col-10 container-fluid" name="ACTION" value="DELETE" {{disabled}}>Delete Test</button>
+
+            </div>
+            <div class="col-10">
+                <div class="form-check">
+                    <div class="form-group">
+                        <textarea class="form-control" name="full_test_descript" style="height:250px">{{test[0]['full_test_descript']}}</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <hr>
+</div>

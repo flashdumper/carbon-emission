@@ -1,0 +1,113 @@
+
+{% extends 'layout.html'%}
+
+{% block body %}
+<div class="container-fluid rounded">
+    <h2 class="text-center">Progress Bar</h2>
+    <div class="progress" style="height: 15px">
+        <div class="progress-bar progress-bar-success" style="width: {{tests_count['APPROVED']}}">
+            {{tests_count['APPROVED']}} Approved
+        </div>
+        <div class="progress-bar progress-bar-striped progress-bar-warning progress-bar-animated" style="width: {{tests_count['IN PROGRESS']}}">
+            {{tests_count['IN PROGRESS']}}
+        </div>
+        <div class="progress-bar progress-bar-striped progress-bar-info progress-bar-animated" style="width: {{tests_count['NEW']}}">
+            {{tests_count['NEW']}} New
+        </div>
+    </div>
+    <hr>
+    <h2 class="text-center">New Tests</h2>
+    <table class="table Custom_Table table-bordered table-striped table-hover">
+        <thead>
+        <tr>
+            <th class="text-center" style="width: 3%">ID</th>
+            <th class="text-center" style="width: 7%">Status</th>
+            <th class="text-center" style="width: 5%">Category</th>
+            <th class="text-center" style="width: 10%">Test Name</th>
+            <th class="text-center" style="width: 50%">Test Description</th>
+            <th class="text-center" style="width: 10%">Assigned to</th>
+        </tr>
+        </thead>
+        <tbody>
+        {%for test in tests%}
+        {% if test['test_status'] == 'NEW' %}
+        <tr>
+            <td >{{test['id']}}</td>
+            <td class="alert alert-info text-center">{{test['test_status']}}</td>
+            <td >{{test['group_name']}}</td>
+            <td >{{test['test_name']}}</td>
+            <td >{{test['test_description']}}</td>
+            <td >{{test['assignedto']}}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<hr>
+<div class="container-fluid">
+    <h2 class="text-center">Tests in Progress</h2>
+
+    <table class="table Custom_Table table-bordered table-striped table-hover">
+        <thead>
+        <tr>
+            <th class="text-center" style="width: 3%">ID</th>
+            <th class="text-center" style="width: 7%">Status</th>
+            <th class="text-center" style="width: 5%">Category</th>
+            <th class="text-center" style="width: 10%">Test Name</th>
+            <th class="text-center" style="width: 50%">Test Description</th>
+            <th class="text-center" style="width: 10%">Assigned to</th>
+        </tr>
+        </thead>
+        <tbody>
+        {%for test in tests%}
+        {% if test['test_status'] == 'IN PROGRESS' %}
+        <tr>
+            <td>{{test['id']}}</td>
+            <td class="alert alert-warning text-center">{{test['test_status']}}</td>
+            <td >{{test['group_name']}}</td>
+            <td >{{test['test_name']}}</td>
+            <td >{{test['test_description']}}</td>
+            <td >{{test['assignedto']}}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<hr>
+<div class="container-fluid rounded">
+    <h2 class="text-center">Tests Approved</h2>
+
+    <table class="table Custom_Table table-bordered table-striped table-hover">
+        <thead>
+        <tr>
+            <th class="text-center" style="width: 3%">ID</th>
+            <th class="text-center" style="width: 7%">Status</th>
+            <th class="text-center" style="width: 5%">Category</th>
+            <th class="text-center" style="width: 10%">Test Name</th>
+            <th class="text-center" style="width: 50%">Test Description</th>
+            <th class="text-center" style="width: 10%">Approved by</th>
+            <th class="text-center" style="width: 5%"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {%for test in tests%}
+        {% if test['test_status'] == 'APPROVED' %}
+        <tr>
+            <td >{{test['id']}}</td>
+            <td class="alert alert-success text-center">{{test['test_status']}}</td>
+            <td >{{test['group_name']}}</td>
+            <td >{{test['test_name']}}</td>
+            <td >{{test['test_description']}}</td>
+            <td >{{test['approvedby']}}</td>
+            <td ><a href="{{test['results_url']}}">Results</a></td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<hr>
+{% endblock body %}
+
